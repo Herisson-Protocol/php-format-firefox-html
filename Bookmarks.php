@@ -1,81 +1,4 @@
 <?php
-/**
- * Firefox bookmarks parser
- *
- * @source http://www.polak.ro/firefox-bookmarks-parser.html
- * @license http://www.polak.ro/licencing-projects.html See the link
- */
-
-function recomputeSpacer(&$s, $n)
-{
-    $s = '';
-    for ($i = 0; $i<$n ; $i++) {
-        $s .= "\t";
-    }
-}
-
-function shortname($name, $maxlength=120, $separator='...')
-{
-    // shortname v2.0
-    $seplen = strlen($separator);
-    if (strlen($name) > $maxlength) {
-        $name = substr($name, 0, ($maxlength-$seplen)/2).$separator.substr($name, strlen($name)-($maxlength-$seplen)/2, strlen($name));
-    }
-    return $name;
-}
-
-class Item
-{
-
-    public $_id;
-    public $_parent;
-    public $_isFolder;
-    public $depth;
-    public $name;    
-    public $ADD_DATE;
-    public $LAST_MODIFIED;    
-    public $BID;
-
-}
-class Bookmark extends Item
-{
-
-    public $HREF;
-    public $LAST_VISIT;
-    public $LAST_CHARSET;
-    
-}
-
-class IconSet
-{
-
-    protected $icons;
-    protected static $counter;
-    
-    public function IconSet()
-    {
-        $icons = array();
-    }
-    
-    public function add($hash, $content)
-    {
-        if (isset($this->icons[$hash])) return;
-        $this->icons[$hash] = $content;
-    }
-    public function get($hash)
-    {
-        return $this->icons[$hash];
-    }
-    public function writeIcons()
-    {
-    
-        foreach ($this->icons as $hash => $icon) {
-            $fp = fopen('icons/'.$hash.'.ico', 'w+');
-            fwrite($fp, base64_decode(substr($icon, strpos($icon, ','), strlen($icon))));
-            fclose($fp);
-        }
-    }
-}
 
 class Bookmarks
 {
@@ -238,4 +161,3 @@ class Bookmarks
         array_push($this->bookmarks, $item);
     }
 }
-?>

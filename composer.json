@@ -1,0 +1,27 @@
+{
+    "name": "herisson-protocol/format-firefox-html",
+    "type": "library",
+    "description": "Handle firefox html bookmarks",
+    "keywords": ["firefox", "del.icio.us", "bookmarks"],
+    "homepage": "https://github.com/herisson-protocol/format-firefox-html",
+    "license": "GPL v2.1",
+    "authors": [
+        {
+            "name": "Thibault Taillandier",
+            "email": "thibault@taillandier.name",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": { },
+        "files": [
+            "Bookmark.php",
+            "Bookmarks.php",
+            "IconSet.php",
+            "Item.php"
+        ]
+    }
+}
